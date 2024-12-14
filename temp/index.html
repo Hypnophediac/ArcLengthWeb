@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemezhajtás Számító</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lemezhajtás Számító</h1>
+        <div class="input-section">
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="radiusType" value="inner" checked onchange="toggleRadiusInput()">
+                    Belső rádiusz
+                </label>
+                <label>
+                    <input type="radio" name="radiusType" value="neutral" onchange="toggleRadiusInput()">
+                    Neutrális rádiusz
+                </label>
+            </div>
+            <div class="input-group" id="innerRadiusGroup">
+                <label for="innerRadius">Belső rádiusz (r):</label>
+                <input type="number" id="innerRadius" step="any" required>
+            </div>
+            <div class="input-group" id="neutralRadiusGroup" style="display: none;">
+                <label for="neutralRadius">Neutrális rádiusz (rn):</label>
+                <input type="number" id="neutralRadius" step="any" required>
+            </div>
+            <div class="input-group">
+                <label for="thickness">Lemezvastagság (mm):</label>
+                <input type="number" id="thickness" step="0.1" min="0">
+            </div>
+            <div class="input-group">
+                <label for="startLength">Kezdő egyenes szakasz (mm):</label>
+                <input type="number" id="startLength" step="0.1" min="0">
+            </div>
+            <div class="input-group">
+                <label for="endLength">Záró egyenes szakasz (mm):</label>
+                <input type="number" id="endLength" step="0.1" min="0">
+            </div>
+            <div class="input-group">
+                <label for="kFactor">K-faktor (k):</label>
+                <input type="number" id="kFactor" step="0.01" value="0.35" required>
+            </div>
+            <div class="input-group">
+                <label for="segmentCount">Szegmensek száma (n):<br><small>(A hajlítások száma: n+1)</small></label>
+                <input type="number" id="segmentCount" step="1" min="1" required>
+            </div>
+            <div class="input-group">
+                <label for="angle">Hajlítási szög (α) fokban:</label>
+                <input type="number" id="angle" step="any" required>
+            </div>
+        </div>
+        <div class="button-group">
+            <button onclick="calculateBending()" class="calculate">Számítás</button>
+            <button onclick="resetCalculator()" class="reset">Újra</button>
+        </div>
+        <div id="result"></div>
+        <div id="segments"></div>
+        <div class="visualization">
+            <canvas id="arcCanvas" width="1000" height="800"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
